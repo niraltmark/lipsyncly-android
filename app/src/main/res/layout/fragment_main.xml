@@ -7,19 +7,25 @@
     android:orientation="vertical"
     android:layout_gravity="center_vertical"
     tools:context=".MainActivity$com.example.niraltmark.lipsyncly.PlaceholderFragment"
-    android:weightSum="1" android:id="@+id/linerlayout">
+    android:weightSum="1" android:id="@+id/rootView">
 
-    <!--<VideoView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="240dp"-->
-        <!--android:id="@+id/videoView" />-->
+
+    <VideoView
+        android:layout_width="match_parent"
+        android:layout_height="810px"
+        android:layout_marginTop="810px"
+        android:id="@+id/videoView" />
 
     <FrameLayout
         android:id="@+id/camera_preview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
+        android:layout_marginBottom="555px"
+        android:layout_marginTop="-555px"
         android:background="#ffff1f27">
+
     </FrameLayout>
+
 
 </RelativeLayout>

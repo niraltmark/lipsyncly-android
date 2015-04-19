@@ -8,12 +8,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,13 +34,16 @@ public class CameraFragment extends Fragment {
     {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        // Create an instance of Camera
-        mCamera = getCameraInstance();
-
-        // Create our Preview view and set it as the content of our activity.
-        mPreview = new CameraPreview(rootView.getContext(), mCamera);
-
         FrameLayout preview = (FrameLayout) rootView.findViewById(R.id.camera_preview);
+
+//      This code will work but for some reason it will cause a change in the camerapreviewobject and not in the frame
+//        RelativeLayout.LayoutParams layoutParams =  (RelativeLayout.LayoutParams)preview.getLayoutParams();
+//        int marginTop = CalculateFrameMarginTop();
+//        layoutParams.setMargins(0, -1 * marginTop, 0, marginTop);
+//        preview.setLayoutParams(layoutParams);
+
+        mCamera = getCameraInstance();
+        mPreview = new CameraPreview(rootView.getContext(), mCamera);
 
         preview.addView(mPreview);
 
@@ -79,6 +84,14 @@ public class CameraFragment extends Fragment {
         return rootView;
     }
 
+    public int CalculateFrameMarginTop()
+    {
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+
+        int height = (metrics.widthPixels / 4) * 3;
+
+        return (metrics.heightPixels - height) / 2;
+    }
 
     /** A safe way to get an instance of the Camera object. */
     public static Camera getCameraInstance(){
@@ -98,15 +111,6 @@ public class CameraFragment extends Fragment {
         }
 
         return null;
-        // android.hardware.camera2
-//        Camera c = null;
-//        try {
-//            c = Camera.open(); // attempt to get a Camera instance
-//        }
-//        catch (Exception e){
-//            // Camera is not available (in use or does not exist)
-//        }
-//        return c; // returns null if camera is unavailable
     }
 
     private boolean isRecording = false;

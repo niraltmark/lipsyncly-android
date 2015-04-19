@@ -25,12 +25,12 @@ public  class PlaceholderFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-//        VideoView videoView = (VideoView) rootView.findViewById(R.id.videoView);
+        VideoView videoView = (VideoView) rootView.findViewById(R.id.videoView);
 //
 //
-//        videoView.setVideoPath(Environment.getExternalStorageDirectory() + "/uptown-funk.mp4");
-//        videoView.start();
-
+        videoView.setVideoPath(Environment.getExternalStorageDirectory() + "/uptown-funk.mp4");
+        videoView.start();
+//
         return rootView;
     }
 }

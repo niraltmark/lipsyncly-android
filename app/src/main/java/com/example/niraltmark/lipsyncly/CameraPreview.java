@@ -29,19 +29,8 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         mHolder.addCallback(this);
 
 
-//        DisplayMetrics metrics = getResources().getDisplayMetrics();
-//        int height = 0;
-//        int width = 0;
 //
-//        if(metrics.widthPixels < metrics.heightPixels){
-//            width = metrics.widthPixels;
-//            height= (metrics.widthPixels/4) * 3 ;
-//        } else {
-//            height= metrics.heightPixels;
-//            width= (metrics.heightPixels/4) * 3 ;
-//        }
-//
-//        this.setLayoutParams(new FrameLayout.LayoutParams(width,height));
+//        this.setLayoutParams(new FrameLayout.LayoutParams(width, height));
 //        this.setBackgroundColor(Color.parseColor("#fc9a24"));
 
         // deprecated setting, but required on Android versions prior to 3.0
