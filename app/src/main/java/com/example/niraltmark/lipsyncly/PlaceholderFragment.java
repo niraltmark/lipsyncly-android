@@ -29,7 +29,7 @@ public  class PlaceholderFragment extends Fragment {
 //
 //
         videoView.setVideoPath(Environment.getExternalStorageDirectory() + "/uptown-funk.mp4");
-        videoView.start();
+//        videoView.start();
 //
         return rootView;
     }

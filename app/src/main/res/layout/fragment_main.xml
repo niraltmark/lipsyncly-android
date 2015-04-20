@@ -10,11 +10,20 @@
     android:weightSum="1" android:id="@+id/rootView">
 
 
-    <VideoView
-        android:layout_width="match_parent"
-        android:layout_height="810px"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_marginTop="810px"
-        android:id="@+id/videoView" />
+        android:layout_height="810px">
+
+        <VideoView
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/videoView" />
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/camera_preview"
@@ -27,5 +36,8 @@
 
     </FrameLayout>
 
-
+    <Button
+        android:id="@+id/button_capture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
