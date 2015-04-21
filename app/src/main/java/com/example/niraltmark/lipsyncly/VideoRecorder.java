@@ -14,16 +14,19 @@ import java.util.Date;
 
 public class VideoRecorder implements View.OnClickListener
 {
-    private boolean isRecording = false;
     private MediaRecorder mMediaRecorder;
     private Camera mCamera;
     private CameraPreview mPreview;
+    private File file;
 
-    public VideoRecorder(Camera mCamera, CameraPreview mPreview) {
+    public VideoRecorder(Camera mCamera, CameraPreview mPreview, File file) {
 
         this.mCamera = mCamera;
         this.mPreview = mPreview;
+        this.file = file;
     }
+
+    private boolean isRecording = false;
 
     @Override
     public void onClick(View v) {
@@ -67,14 +70,15 @@ public class VideoRecorder implements View.OnClickListener
         mMediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
 
         // Step 3: Set a CamcorderProfile (requires API Level 8 or higher)
-        CamcorderProfile camcorderProfile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
-        mMediaRecorder.setProfile(camcorderProfile);
+        mMediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH));
 
         // Step 4: Set output file
-        mMediaRecorder.setOutputFile(getOutputMediaFile(MEDIA_TYPE_VIDEO).toString());
+        mMediaRecorder.setOutputFile(file.toString());
 
         // Step 5: Set the preview output
         mMediaRecorder.setPreviewDisplay(mPreview.getHolder().getSurface());
+
+        mMediaRecorder.setOrientationHint(270);
 
         // Step 6: Prepare configured MediaRecorder
         try {
@@ -98,47 +102,5 @@ public class VideoRecorder implements View.OnClickListener
             mMediaRecorder = null;
             mCamera.lock();           // lock camera for later use
         }
-    }
-
-    public static final int MEDIA_TYPE_IMAGE = 1;
-    public static final int MEDIA_TYPE_VIDEO = 2;
-
-    /** Create a file Uri for saving an image or video */
-    private static Uri getOutputMediaFileUri(int type){
-        return Uri.fromFile(getOutputMediaFile(type));
-    }
-
-    /** Create a File for saving an image or video */
-    private static File getOutputMediaFile(int type){
-        // To be safe, you should check that the SDCard is mounted
-        // using Environment.getExternalStorageState() before doing this.
-
-        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "MyCameraApp");
-        // This location works best if you want the created images to be shared
-        // between applications and persist after your app has been uninstalled.
-
-        // Create the storage directory if it does not exist
-        if (! mediaStorageDir.exists()){
-            if (! mediaStorageDir.mkdirs()){
-                // Log.d("MyCameraApp", "failed to create directory");
-                return null;
-            }
-        }
-
-        // Create a media file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File mediaFile;
-        if (type == MEDIA_TYPE_IMAGE){
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-                    "IMG_"+ timeStamp + ".jpg");
-        } else if(type == MEDIA_TYPE_VIDEO) {
-            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-                    "VID_"+ timeStamp + ".mp4");
-        } else {
-            return null;
-        }
-
-        return mediaFile;
     }
 }
