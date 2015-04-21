@@ -41,7 +41,7 @@ public class VideoUploader extends AsyncTask<Void, Void, Void> implements View.O
         IAssemblyBuilder assembly = new AssemblyBuilder();
 
         //Set template ID
-//        assembly.setTemplateID("YOUR-PRECREATED-TEMPLATE-ID");
+        assembly.setTemplateID("10f82990e80f11e48c2005a363a93171");
 
         try {
 
