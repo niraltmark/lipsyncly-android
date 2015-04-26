@@ -6,6 +6,7 @@ import android.view.View;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 
 import hu.szabot.transloadit.ITransloadit;
 import hu.szabot.transloadit.Transloadit;
@@ -34,14 +35,16 @@ public class VideoUploader extends AsyncTask<Void, Void, Void> implements View.O
 
     @Override
     protected Void doInBackground(Void... params) {
-        //Create Transloadit instance
         ITransloadit transloadit = new Transloadit("febb5ba0df6511e4b6c85b881c054f80");
+        transloadit.useSignature("8715b483383b5c141e07421914a8325a2f6e7ac5");
 
-        //Create assembly builder to build up the assembly
         IAssemblyBuilder assembly = new AssemblyBuilder();
 
-        //Set template ID
-        assembly.setTemplateID("10f82990e80f11e48c2005a363a93171");
+        assembly.setTemplateID("f415fd30e83511e49adc43d254a50692"); // The template for cropping
+        assembly.setNotifyURL("http://lipsyncly.herokuapp.com/upload");
+        assembly.setAuthExpires(new Date(new Date().getTime() + 120 * 60000));
+
+
 
         try {
 
@@ -55,6 +58,8 @@ public class VideoUploader extends AsyncTask<Void, Void, Void> implements View.O
 
         try
         {
+
+
             //Invoke assembly, and wait for the result
             TransloaditResponse response = transloadit.invokeAssembly(assembly);
 

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.VideoView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -36,8 +37,18 @@ public class CameraFragment extends Fragment {
         FrameLayout preview = (FrameLayout) rootView.findViewById(R.id.camera_preview);
         preview.addView(mPreview);
 
+        final VideoView videoView = (VideoView) rootView.findViewById(R.id.videoView);
+        videoView.setVideoPath(Environment.getExternalStorageDirectory() + "/uptown-funk-short.mp4");
+
         Button captureButton = (Button) rootView.findViewById(R.id.button_capture);
-        captureButton.setOnClickListener(mVideoRecorder);
+        captureButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                videoView.start();
+
+                mVideoRecorder.onClick(v);
+            }
+        });
 
         Button uploadButton = (Button) rootView.findViewById(R.id.button_upload);
         uploadButton.setOnClickListener(new VideoUploader(mFile));
