@@ -3,6 +3,7 @@ package com.example.niraltmark.lipsyncly;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -44,12 +45,17 @@ public class CameraFragment extends Fragment {
         captureButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                videoView.start();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        videoView.start();
+                    }
+                }, 2000);
 
                 mVideoRecorder.onClick(v);
             }
         });
-
+        
         Button uploadButton = (Button) rootView.findViewById(R.id.button_upload);
         uploadButton.setOnClickListener(new VideoUploader(mFile));
 
