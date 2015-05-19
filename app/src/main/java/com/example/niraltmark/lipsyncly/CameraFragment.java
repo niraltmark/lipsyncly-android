@@ -50,9 +50,28 @@ public class CameraFragment extends Fragment {
                     public void run() {
                         videoView.start();
                     }
-                }, 2000);
+                }, 5000);
 
                 mVideoRecorder.onClick(v);
+            }
+        });
+
+        Button exposureButton = (Button) rootView.findViewById(R.id.button_exposure);
+        exposureButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                mCamera.stopPreview();
+
+                mCamera.setDisplayOrientation(90);
+
+                Camera.Parameters parameters = mCamera.getParameters();
+                parameters.setPreviewSize(1920,1080);
+                parameters.setPreviewFpsRange(30000, 30000); // for 30 fps
+                parameters.setAutoWhiteBalanceLock(true);
+                parameters.setAutoExposureLock(true);
+                mCamera.setParameters(parameters);
+
+                mCamera.startPreview();
             }
         });
         

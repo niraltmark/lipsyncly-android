@@ -43,10 +43,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             mCamera.setPreviewDisplay(holder);
             mCamera.setDisplayOrientation(90);
 
-//            Camera.Parameters parameters=mCamera.getParameters();
-//            parameters.setPreviewSize(640,480);
-//            mCamera.setParameters(parameters);
-//
+            Camera.Parameters parameters = mCamera.getParameters();
+            parameters.setPreviewSize(1920,1080);
+            parameters.setPreviewFpsRange(30000, 30000); // for 30 fps
+//            parameters.setAutoWhiteBalanceLock(true);
+//            parameters.setAutoExposureLock(true);
+            mCamera.setParameters(parameters);
+
 //            mHolder.setFixedSize(640,480);
             mCamera.startPreview();
         } catch (IOException e) {
@@ -87,7 +90,17 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
 
         // start preview with new settings
         try {
-            mCamera.setPreviewDisplay(mHolder);
+
+            mCamera.stopPreview();
+
+            mCamera.setDisplayOrientation(90);
+
+            Camera.Parameters parameters = mCamera.getParameters();
+            parameters.setPreviewSize(1920,1080);
+            parameters.setPreviewFpsRange(30000, 30000); // for 30 fps
+//            parameters.setAutoWhiteBalanceLock(true);
+//            parameters.setAutoExposureLock(true);
+            mCamera.setParameters(parameters);
 
             mCamera.startPreview();
 

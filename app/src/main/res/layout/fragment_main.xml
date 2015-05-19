@@ -43,6 +43,13 @@
         android:layout_below="@id/video_view_container">
 
         <Button
+            android:id="@+id/button_exposure"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="exposure" />
+
+        <Button
             android:id="@+id/button_capture"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
