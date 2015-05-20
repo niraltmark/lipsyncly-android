@@ -40,7 +40,7 @@ public class VideoUploader extends AsyncTask<Void, Void, Void> implements View.O
 
         IAssemblyBuilder assembly = new AssemblyBuilder();
 
-        assembly.setTemplateID("f415fd30e83511e49adc43d254a50692"); // The template for cropping
+        assembly.setTemplateID("c170b0c0fada11e49d556126362797b9"); // The template for cropping
         assembly.setNotifyURL("http://lipsyncly.herokuapp.com/upload");
         assembly.setAuthExpires(new Date(new Date().getTime() + 120 * 60000));
 
