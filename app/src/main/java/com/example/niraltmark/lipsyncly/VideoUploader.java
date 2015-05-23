@@ -35,8 +35,7 @@ public class VideoUploader extends AsyncTask<Void, Void, Void> implements View.O
 
     @Override
     protected Void doInBackground(Void... params) {
-        ITransloadit transloadit = new Transloadit("febb5ba0df6511e4b6c85b881c054f80");
-        transloadit.useSignature("8715b483383b5c141e07421914a8325a2f6e7ac5");
+        
 
         IAssemblyBuilder assembly = new AssemblyBuilder();
 
